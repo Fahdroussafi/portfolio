@@ -1,4 +1,3 @@
-import react from "@vitejs/plugin-react";
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -29,6 +28,5 @@ export default {
       },
     },
   },
-  plugins: [react({ include: /\.(mdx|js|jsx|ts|tsx)$/ })],
-  
+  plugins: [],
 };
