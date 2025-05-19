@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Globe from 'react-globe.gl';
-import { FaRegCopy } from 'react-icons/fa6';
 
 import Button from '../components/button.jsx';
 
@@ -19,7 +18,7 @@ const About = () => {
   return (
     <section className="c-space my-20" id="about">
       <div className="grid xl:grid-cols-3 xl:grid-rows-6 md:grid-cols-2 grid-cols-1 gap-5 h-full">
-        <div className="col-span-1 xl:row-span-3">
+        <div className="col-span-1 xl:row-span-3 p">
           <div className="grid-container">
             <img src="assets/grid1.png" alt="grid-1" className="w-full sm:h-[276px] h-fit object-contain" />
 
@@ -94,9 +93,9 @@ const About = () => {
             <div className="space-y-2">
               <p className="grid-subtext text-center">Contact me</p>
               <div className="copy-container" onClick={handleCopy}>
-                <img src={hasCopied ? 'assets/tick.svg' : <FaRegCopy className="size-4" />} alt="copy" />
+                <img src={hasCopied ? 'assets/tick.svg' : 'copy.svg'} alt="copy" />
                 <p className="lg:text-2xl md:text-xl font-medium text-gray_gradient text-white">
-                  roussafifahd@gmail.com
+                  {hasCopied ? 'Copied' : 'roussafifahd@gmail.com'}
                 </p>
               </div>
             </div>

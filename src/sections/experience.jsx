@@ -21,10 +21,12 @@ const WorkExperience = () => {
                   </div>
                   <div className="sm:p-5 px-2.5 py-5">
                     <p className="font-bold text-white-800">{name}</p>
-                    <p className="text-sm mb-5">
+                    <p className="text-xs mb-5">
                       {pos} -- <span>{duration}</span>
                     </p>
-                    <p className="group-hover:text-white transition-all ease-in-out duration-500">{title}</p>
+                    <p className="text-xs lg:text-base group-hover:text-white transition-all ease-in-out duration-500">
+                      {title}
+                    </p>
                   </div>
                 </div>
               ))}

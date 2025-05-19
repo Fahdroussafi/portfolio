@@ -16,7 +16,7 @@ const Footer = () => {
             <FaLinkedin className="w-1/2 h-1/2 text-white" />
           </div>
         </a>
-        <a href="https://www.instagram.com/fahdroussafi" target="_blank" rel="noreferrer">
+        <a href="https://www.instagram.com/fahd.roussafi/" target="_blank" rel="noreferrer">
           <div className="social-icon">
             <FaInstagram className="w-1/2 h-1/2 text-white" />
           </div>
