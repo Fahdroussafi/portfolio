@@ -1,4 +1,4 @@
-@import url("https://fonts.cdnfonts.com/css/general-sans");
+@import url('https://fonts.cdnfonts.com/css/general-sans');
 
 @tailwind base;
 @tailwind components;
@@ -10,7 +10,7 @@
 
 body {
   background: #010103;
-  font-family: "General Sans", sans-serif;
+  font-family: 'General Sans', sans-serif;
 }
 
 @layer utilities {
@@ -101,7 +101,7 @@ body {
 
   /*  work experience section */
   .work-container {
-    @apply grid lg:grid-cols-3 grid-cols-1 gap-5 mt-12;
+    @apply grid grid-cols-1 gap-5 mt-12;
   }
 
   .work-canvas {
