@@ -1,20 +1,34 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Globe from 'react-globe.gl';
 
 import Button from '../components/button.jsx';
 
 const About = () => {
   const [hasCopied, setHasCopied] = useState(false);
+  const timeoutRef = useRef(null);
 
   const handleCopy = () => {
     navigator.clipboard.writeText('roussafifahd@gmail.com');
     setHasCopied(true);
 
-    setTimeout(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    timeoutRef.current = setTimeout(() => {
       setHasCopied(false);
+      timeoutRef.current = null;
     }, 2000);
   };
 
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
+  const labelsData = useMemo(() => [{ lat: 40, lng: -100, text: 'Rabat, Morocco', color: 'white', size: 15 }], []);
   return (
     <section className="c-space my-20" id="about">
       <div className="grid xl:grid-cols-3 xl:grid-rows-6 md:grid-cols-2 grid-cols-1 gap-5 h-full">
@@ -57,7 +71,7 @@ const About = () => {
                 showGraticules
                 globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
                 bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
-                labelsData={[{ lat: 40, lng: -100, text: 'Rabat, Morocco', color: 'white', size: 15 }]}
+                labelsData={labelsData}
               />
             </div>
             <div>
