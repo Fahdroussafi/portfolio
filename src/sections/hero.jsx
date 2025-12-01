@@ -4,13 +4,9 @@ import { Suspense } from 'react';
 import { useMediaQuery } from 'react-responsive';
 
 import Button from '../components/button.jsx';
-import Cube from '../components/cube.jsx';
 import { HackerRoom } from '../components/hacker-room.jsx';
 import HeroCamera from '../components/hero-camera.jsx';
 import CanvasLoader from '../components/loader.jsx';
-import ReactLogo from '../components/react-logo.jsx';
-import Rings from '../components/rings.jsx';
-import Target from '../components/target.jsx';
 import { calculateSizes } from '../constants/index.js';
 
 const Hero = () => {
@@ -37,13 +33,6 @@ const Hero = () => {
             <HeroCamera isMobile={isMobile}>
               <HackerRoom scale={sizes.deskScale} position={sizes.deskPosition} rotation={[0.1, -Math.PI, 0]} />
             </HeroCamera>
-            <group>
-              <Target position={sizes.targetPosition} />
-              <ReactLogo position={sizes.reactLogoPosition} />
-              <Rings position={sizes.ringPosition} />
-              <Cube position={sizes.cubePosition} />
-            </group>
-
             <ambientLight intensity={1} />
             <directionalLight position={[10, 10, 10]} intensity={0.5} />
           </Suspense>
