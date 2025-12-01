@@ -1,3 +1,4 @@
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { lazy, Suspense } from 'react';
 
 import Hero from './sections/hero';
@@ -22,6 +23,7 @@ function App() {
         <Contact />
         <Footer />
       </Suspense>
+      <SpeedInsights />
     </main>
   );
 }
