@@ -1,11 +1,21 @@
-import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   build: {
     target: 'esnext',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-responsive', 'react-icons'],
+          three: ['three', '@react-three/fiber', '@react-three/drei'],
+          animation: ['gsap', '@gsap/react'],
+          globe: ['react-globe.gl'],
+        },
+      },
+    },
   },
   esbuild: {
     supported: {
@@ -17,8 +27,4 @@ export default defineConfig({
       target: 'esnext',
     },
   },
-  // server: {
-  //   host: '192.168.70.58',
-  //   port: 3000,
-  // },
 });

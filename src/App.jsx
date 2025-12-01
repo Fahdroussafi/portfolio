@@ -1,21 +1,27 @@
-import About from './sections/about';
-import Footer from './sections/footer';
+import { lazy, Suspense } from 'react';
+
 import Hero from './sections/hero';
 import Navbar from './sections/navbar';
-import Projects from './sections/projects';
-import WorkExperience from './sections/experience';
-import Contact from './sections/contact';
+
+const About = lazy(() => import('./sections/about'));
+const Footer = lazy(() => import('./sections/footer'));
+const Projects = lazy(() => import('./sections/projects'));
+const WorkExperience = lazy(() => import('./sections/experience'));
+const Contact = lazy(() => import('./sections/contact'));
 
 function App() {
   return (
     <main className="max-w-7xl mx-auto relative">
       <Navbar />
       <Hero />
-      <About />
-      <WorkExperience />
-      <Projects />
-      <Contact />
-      <Footer />
+
+      <Suspense fallback={<div>Loading content...</div>}>
+        <About />
+        <WorkExperience />
+        <Projects />
+        <Contact />
+        <Footer />
+      </Suspense>
     </main>
   );
 }
