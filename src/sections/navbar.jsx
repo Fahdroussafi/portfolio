@@ -3,16 +3,25 @@ import { useState } from 'react';
 import { CiMenuBurger } from 'react-icons/ci';
 import { IoMdClose } from 'react-icons/io';
 import { navLinks } from '../constants';
+import { useGsapHover } from '../hooks/use-gsap-hover';
+
+const NavItem = ({ id, href, name }) => {
+  const navRef = useGsapHover({ scale: 1.1, y: -2, duration: 0.3 });
+
+  return (
+    <li className="nav-li" key={id}>
+      <a ref={navRef} onClick={() => {}} className="nav-li_a hover-lift" href={href}>
+        {name}
+      </a>
+    </li>
+  );
+};
 
 const NavItems = () => {
   return (
     <ul className="nav-ul">
-      {navLinks.map(({ id, href, name }) => (
-        <li className="nav-li" key={id}>
-          <a onClick={() => {}} className="nav-li_a" href={href}>
-            {name}
-          </a>
-        </li>
+      {navLinks.map((link) => (
+        <NavItem key={link.id} {...link} />
       ))}
     </ul>
   );

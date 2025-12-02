@@ -1,6 +1,7 @@
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { lazy, Suspense } from 'react';
 
+import MouseFollower from './components/mouse-follower';
 import Hero from './sections/hero';
 import Navbar from './sections/navbar';
 
@@ -13,6 +14,7 @@ const Contact = lazy(() => import('./sections/contact'));
 function App() {
   return (
     <main className="max-w-7xl mx-auto relative">
+      <MouseFollower />
       <Navbar />
       <Hero />
 

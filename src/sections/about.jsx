@@ -2,10 +2,16 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import Globe from 'react-globe.gl';
 
 import Button from '../components/button.jsx';
+import { useGsapHover } from '../hooks/use-gsap-hover';
 
 const About = () => {
   const [hasCopied, setHasCopied] = useState(false);
   const timeoutRef = useRef(null);
+  const gridRef1 = useGsapHover({ scale: 1.02, y: -5, duration: 0.4 });
+  const gridRef2 = useGsapHover({ scale: 1.02, y: -5, duration: 0.4 });
+  const gridRef3 = useGsapHover({ scale: 1.02, y: -5, duration: 0.4 });
+  const gridRef4 = useGsapHover({ scale: 1.02, y: -5, duration: 0.4 });
+  const gridRef5 = useGsapHover({ scale: 1.02, y: -5, duration: 0.4 });
 
   const handleCopy = () => {
     navigator.clipboard.writeText('roussafifahd@gmail.com');
@@ -33,7 +39,7 @@ const About = () => {
     <section className="c-space my-20" id="about">
       <div className="grid xl:grid-cols-3 xl:grid-rows-6 md:grid-cols-2 grid-cols-1 gap-5 h-full">
         <div className="col-span-1 xl:row-span-3 p">
-          <div className="grid-container">
+          <div ref={gridRef1} className="grid-container hover-glow">
             <img
               src="assets/grid1.png"
               alt="grid-1"
@@ -51,7 +57,7 @@ const About = () => {
         </div>
 
         <div className="col-span-1 xl:row-span-3">
-          <div className="grid-container">
+          <div ref={gridRef2} className="grid-container hover-glow">
             <img
               src="assets/grid2.png"
               alt="grid-2"
@@ -70,7 +76,7 @@ const About = () => {
         </div>
 
         <div className="col-span-1 xl:row-span-4">
-          <div className="grid-container">
+          <div ref={gridRef3} className="grid-container hover-glow">
             <div className="rounded-3xl w-full sm:h-[326px] h-fit flex justify-center items-center">
               <Globe
                 height={326}
@@ -93,7 +99,7 @@ const About = () => {
         </div>
 
         <div className="xl:col-span-2 xl:row-span-3">
-          <div className="grid-container">
+          <div ref={gridRef4} className="grid-container hover-glow">
             <img
               src="assets/grid3.png"
               alt="grid-3"
@@ -112,7 +118,7 @@ const About = () => {
         </div>
 
         <div className="xl:col-span-1 xl:row-span-2">
-          <div className="grid-container">
+          <div ref={gridRef5} className="grid-container hover-glow">
             <img
               src="assets/grid4.png"
               alt="grid-4"

@@ -1,6 +1,10 @@
+import { useGsapHover } from '../hooks/use-gsap-hover';
+
 const Button = ({ name, isBeam = false, containerClass }) => {
+  const buttonRef = useGsapHover({ scale: 1.08, y: -3, duration: 0.3 });
+
   return (
-    <button className={`btn ${containerClass}`}>
+    <button ref={buttonRef} className={`btn hover-glow ${containerClass}`}>
       {isBeam && (
         <span className="relative flex h-3 w-3">
           <span className="btn-ping"></span>

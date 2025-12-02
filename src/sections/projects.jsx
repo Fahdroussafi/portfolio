@@ -10,11 +10,14 @@ import DemoComputer from '../components/demo-computer.jsx';
 import CanvasLoader from '../components/loader.jsx';
 import { myProjects } from '../constants/index.js';
 import { IfElse } from '../helper/IfElse.tsx';
+import { useGsapHover } from '../hooks/use-gsap-hover';
 
 const projectCount = myProjects.length;
 
 const Projects = () => {
   const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
+  const leftArrowRef = useGsapHover({ scale: 1.15, rotation: -10, duration: 0.3 });
+  const rightArrowRef = useGsapHover({ scale: 1.15, rotation: 10, duration: 0.3 });
 
   const handleNavigation = (direction) => {
     setSelectedProjectIndex((prevIndex) => {
@@ -85,11 +88,11 @@ const Projects = () => {
           </div>
 
           <div className="flex justify-between items-center mt-7">
-            <button className="arrow-btn" onClick={() => handleNavigation('previous')}>
+            <button ref={leftArrowRef} className="arrow-btn hover-glow" onClick={() => handleNavigation('previous')}>
               <FaArrowLeft className="text-white" />
             </button>
 
-            <button className="arrow-btn" onClick={() => handleNavigation('next')}>
+            <button ref={rightArrowRef} className="arrow-btn hover-glow" onClick={() => handleNavigation('next')}>
               <FaArrowRight className="text-white" />
             </button>
           </div>
