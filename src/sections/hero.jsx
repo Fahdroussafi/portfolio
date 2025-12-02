@@ -27,6 +27,14 @@ const Hero = () => {
     });
 
     const handleMouseMove = (e) => {
+      const { innerWidth, innerHeight } = window;
+      const x = (e.clientX / innerWidth - 0.5) * 2;
+      const y = (e.clientY / innerHeight - 0.5) * 2;
+
+      if (textContainer) {
+        textContainer.style.transform = `perspective(1000px) rotateX(${y * -10}deg) rotateY(${x * 10}deg)`;
+      }
+
       chars.forEach((span) => {
         const rect = span.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
