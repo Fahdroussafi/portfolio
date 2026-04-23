@@ -1,16 +1,29 @@
 import gsap from 'gsap';
 import { useEffect, useRef } from 'react';
 
+const isTouchDevice = () => {
+  if (typeof window === 'undefined') return false;
+  return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+};
+
 const MouseFollower = () => {
   const followerRef = useRef(null);
   const trailRefs = useRef([]);
-  const mousePos = useRef({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
-  const followerPos = useRef({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
+  const mousePos = useRef({ x: 0, y: 0 });
+  const followerPos = useRef({ x: 0, y: 0 });
   const animationFrameId = useRef(null);
+  const isTouch = useRef(isTouchDevice());
 
   useEffect(() => {
+    // Don't render mouse follower on touch devices — it's pointless and wastes GPU cycles
+    if (isTouch.current) return;
+
     const follower = followerRef.current;
     if (!follower) return;
+
+    // Initialize positions to center
+    mousePos.current = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+    followerPos.current = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
 
     const handleMouseMove = (e) => {
       mousePos.current = { x: e.clientX, y: e.clientY };
@@ -41,40 +54,44 @@ const MouseFollower = () => {
       animationFrameId.current = requestAnimationFrame(animateFollower);
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     animateFollower();
 
-    let particleTimeout;
+    // Throttled particle creation to reduce DOM thrashing
+    let lastParticleTime = 0;
     const createParticle = (e) => {
-      clearTimeout(particleTimeout);
-      particleTimeout = setTimeout(() => {
-        const particle = document.createElement('div');
-        particle.className = 'mouse-particle';
-        particle.style.left = e.clientX + 'px';
-        particle.style.top = e.clientY + 'px';
-        document.body.appendChild(particle);
+      const now = Date.now();
+      if (now - lastParticleTime < 80) return; // Throttle to ~12fps for particles
+      lastParticleTime = now;
 
-        gsap.to(particle, {
-          opacity: 0,
-          scale: 2,
-          duration: 1,
-          ease: 'power2.out',
-          onComplete: () => particle.remove(),
-        });
-      }, 50);
+      const particle = document.createElement('div');
+      particle.className = 'mouse-particle';
+      particle.style.left = e.clientX + 'px';
+      particle.style.top = e.clientY + 'px';
+      document.body.appendChild(particle);
+
+      gsap.to(particle, {
+        opacity: 0,
+        scale: 2,
+        duration: 1,
+        ease: 'power2.out',
+        onComplete: () => particle.remove(),
+      });
     };
 
-    window.addEventListener('mousemove', createParticle);
+    window.addEventListener('mousemove', createParticle, { passive: true });
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mousemove', createParticle);
-      clearTimeout(particleTimeout);
       if (animationFrameId.current) {
         cancelAnimationFrame(animationFrameId.current);
       }
     };
   }, []);
+
+  // Don't render anything on touch devices
+  if (isTouch.current) return null;
 
   return (
     <>
@@ -95,17 +112,17 @@ const MouseFollower = () => {
           willChange: 'transform',
         }}
       />
-      {[...Array(5)].map((_, i) => (
+      {[...Array(3)].map((_, i) => (
         <div
           key={i}
           ref={(el) => (trailRefs.current[i] = el)}
           className="mouse-trail"
           style={{
             position: 'fixed',
-            width: `${30 - i * 4}px`,
-            height: `${30 - i * 4}px`,
+            width: `${30 - i * 6}px`,
+            height: `${30 - i * 6}px`,
             borderRadius: '50%',
-            background: `radial-gradient(circle, rgba(190, 193, 207, ${0.4 - i * 0.05}), rgba(213, 216, 234, ${0.2 - i * 0.03}))`,
+            background: `radial-gradient(circle, rgba(190, 193, 207, ${0.4 - i * 0.08}), rgba(213, 216, 234, ${0.2 - i * 0.05}))`,
             pointerEvents: 'none',
             zIndex: 99998 - i,
             mixBlendMode: 'screen',

@@ -2,22 +2,30 @@ import { useGSAP } from '@gsap/react';
 import { Center, OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import gsap from 'gsap';
-import { Suspense, useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { TbArrowUpRight } from 'react-icons/tb';
-import DemoComputer from '../components/demo-computer.jsx';
 import CanvasLoader from '../components/loader.jsx';
 import { myProjects } from '../constants/index.js';
 import { IfElse } from '../helper/IfElse.tsx';
 import { useGsapHover } from '../hooks/use-gsap-hover';
 
+// Lazy load the 3D computer model
+const DemoComputer = lazy(() => import('../components/demo-computer.jsx'));
+
+const isTouchDevice = () => {
+  if (typeof window === 'undefined') return false;
+  return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+};
+
 const projectCount = myProjects.length;
 
 const Projects = () => {
   const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
-  const leftArrowRef = useGsapHover({ scale: 1.15, rotation: -10, duration: 0.3 });
-  const rightArrowRef = useGsapHover({ scale: 1.15, rotation: 10, duration: 0.3 });
+  const isTouch = isTouchDevice();
+  const leftArrowRef = useGsapHover(isTouch ? {} : { scale: 1.15, rotation: -10, duration: 0.3 });
+  const rightArrowRef = useGsapHover(isTouch ? {} : { scale: 1.15, rotation: 10, duration: 0.3 });
 
   const handleNavigation = (direction) => {
     setSelectedProjectIndex((prevIndex) => {
@@ -47,6 +55,7 @@ const Projects = () => {
               alt="spotlight"
               className="w-full h-96 object-cover rounded-xl"
               loading="lazy"
+              decoding="async"
             />
           </div>
 
@@ -55,14 +64,13 @@ const Projects = () => {
           </div>
 
           <div className="flex flex-col gap-5 text-white-600 my-5">
-            <p className="text-white text-2xl font-semibold animatedText">{currentProject.title}</p>
-
-            <p className="animatedText">{currentProject.desc}</p>
-            <p className="animatedText">{currentProject.subdesc}</p>
+            <p className="text-white text-xl sm:text-2xl font-semibold animatedText">{currentProject.title}</p>
+            <p className="animatedText text-sm sm:text-base">{currentProject.desc}</p>
+            <p className="animatedText text-sm sm:text-base">{currentProject.subdesc}</p>
           </div>
 
           <div className="flex items-center justify-between flex-wrap gap-5">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 flex-wrap">
               {currentProject.tags.map((tag, index) => (
                 <div key={index} className="tech-logo">
                   <img src={tag.path} alt={tag.name} loading="lazy" />
@@ -88,18 +96,25 @@ const Projects = () => {
           </div>
 
           <div className="flex justify-between items-center mt-7">
-            <button ref={leftArrowRef} className="arrow-btn hover-glow" onClick={() => handleNavigation('previous')}>
+            <button
+              ref={leftArrowRef}
+              className="arrow-btn hover-glow"
+              onClick={() => handleNavigation('previous')}
+              aria-label="Previous project">
               <FaArrowLeft className="text-white" />
             </button>
-
-            <button ref={rightArrowRef} className="arrow-btn hover-glow" onClick={() => handleNavigation('next')}>
+            <button
+              ref={rightArrowRef}
+              className="arrow-btn hover-glow"
+              onClick={() => handleNavigation('next')}
+              aria-label="Next project">
               <FaArrowRight className="text-white" />
             </button>
           </div>
         </div>
 
-        <div className="border border-black-300 bg-black-200 rounded-lg h-96 md:h-full">
-          <Canvas>
+        <div className="border border-black-300 bg-black-200 rounded-lg h-96 md:h-full min-h-[300px]">
+          <Canvas dpr={[1, 1.5]} performance={{ min: 0.5 }}>
             <ambientLight intensity={Math.PI} />
             <directionalLight position={[10, 10, 5]} />
             <Center>
@@ -109,7 +124,7 @@ const Projects = () => {
                 </group>
               </Suspense>
             </Center>
-            <OrbitControls maxPolarAngle={Math.PI / 2} enableZoom={false} />
+            <OrbitControls maxPolarAngle={Math.PI / 2} enableZoom={false} enablePan={false} />
           </Canvas>
         </div>
       </div>

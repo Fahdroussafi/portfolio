@@ -6,11 +6,15 @@
 
 * {
   scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
   background: #010103;
   font-family: 'General Sans', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @layer utilities {
@@ -19,7 +23,7 @@ body {
   }
 
   .head-text {
-    @apply sm:text-4xl text-3xl font-semibold text-gray_gradient;
+    @apply sm:text-4xl text-2xl font-semibold text-gray_gradient;
   }
 
   .nav-ul {
@@ -57,7 +61,7 @@ body {
 
   /* hero section */
   .hero_tag {
-    @apply text-center xl:text-6xl md:text-5xl sm:text-4xl text-3xl font-generalsans font-black !leading-normal;
+    @apply text-center xl:text-6xl md:text-5xl sm:text-4xl text-2xl font-generalsans font-black !leading-normal;
   }
 
   /* about section */
@@ -121,7 +125,7 @@ body {
   }
 
   .field-input {
-    @apply w-full bg-black-300 px-5 py-2 min-h-14 rounded-lg placeholder:text-white-500 text-lg text-white-800 shadow-black-200 shadow-2xl focus:outline-none;
+    @apply w-full bg-black-300 px-4 sm:px-5 py-2 min-h-12 sm:min-h-14 rounded-lg placeholder:text-white-500 text-base sm:text-lg text-white-800 shadow-black-200 shadow-2xl focus:outline-none;
   }
 
   .field-btn {
@@ -134,7 +138,7 @@ body {
 
   /*  footer */
   .social-icon {
-    @apply w-12 h-12 rounded-full flex justify-center items-center bg-black-300 border border-black-200;
+    @apply w-11 h-11 sm:w-12 sm:h-12 rounded-full flex justify-center items-center bg-black-300 border border-black-200;
   }
 
   /* Hover effects */
@@ -207,4 +211,117 @@ body {
   z-index: 99997;
   transform: translate(-50%, -50%);
   box-shadow: 0 0 10px rgba(190, 193, 207, 0.5);
+}
+
+/* ─── Mobile 3D Hero Text ─────────────────────────────────────────────────── */
+.hero-3d-mobile {
+  text-align: center;
+  font-family: 'General Sans', sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  transform-style: preserve-3d;
+  perspective: 600px;
+}
+
+.hero-3d-text {
+  display: inline-block;
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #d5d8ea 25%,
+    #bec1cf 50%,
+    #d5d8ea 75%,
+    #ffffff 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: hero-shimmer 6s ease-in-out infinite;
+  /* Base 3D extrusion shadow (overridden by JS when gyro is active) */
+  text-shadow:
+    0 1px 0 rgba(100, 100, 120, 0.3),
+    0 2px 0 rgba(100, 100, 120, 0.28),
+    0 3px 0 rgba(100, 100, 120, 0.26),
+    0 4px 0 rgba(100, 100, 120, 0.24),
+    0 5px 0 rgba(100, 100, 120, 0.22),
+    0 6px 0 rgba(100, 100, 120, 0.20),
+    0 7px 0 rgba(100, 100, 120, 0.18),
+    0 8px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Gentle floating animation — fallback when gyroscope is unavailable */
+.hero-3d-float {
+  animation: hero-float 4s ease-in-out infinite;
+}
+
+@keyframes hero-float {
+  0%, 100% {
+    transform: perspective(600px) rotateX(2deg) rotateY(-3deg) translateY(0);
+  }
+  25% {
+    transform: perspective(600px) rotateX(-2deg) rotateY(2deg) translateY(-6px);
+  }
+  50% {
+    transform: perspective(600px) rotateX(1deg) rotateY(3deg) translateY(-2px);
+  }
+  75% {
+    transform: perspective(600px) rotateX(-1deg) rotateY(-2deg) translateY(-8px);
+  }
+}
+
+@keyframes hero-shimmer {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .waving-hand {
+    animation: none;
+  }
+
+  .mouse-particle,
+  .mouse-follower,
+  .mouse-trail {
+    display: none !important;
+  }
+
+  .hero-3d-float {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .hero-3d-text {
+    animation: none !important;
+    color: #d5d8ea !important;
+    background: none !important;
+    text-shadow: none !important;
+  }
+}
+
+/* Better touch target sizing for mobile */
+@media (max-width: 640px) {
+  .arrow-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .social-icon {
+    width: 44px;
+    height: 44px;
+  }
 }

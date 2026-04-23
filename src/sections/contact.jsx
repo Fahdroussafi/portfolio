@@ -67,57 +67,59 @@ const Contact = () => {
   return (
     <section className="c-space my-20" id="contact">
       {alert.show && <Alert {...alert} />}
-      <div className="relative min-h-screen flex items-center justify-center flex-col">
-        <div className="contact-container">
+      <div className="relative min-h-screen flex items-center justify-center flex-col px-4 sm:px-0">
+        <div className="contact-container w-full max-w-xl">
           <h3 className="head-text">Let&apos;s talk</h3>
-          <p className="text-lg text-white-600 mt-3">
+          <p className="text-base sm:text-lg text-white-600 mt-3">
             Whether you&apos;re looking to build a new website, improve your existing platform, or bring a unique
             project to life, I&apos;m here to help.
           </p>
 
-          <form ref={formRef} onSubmit={handleSubmit} className="mt-12 flex flex-col space-y-7">
-            <label className="space-y-3">
-              <span className="field-label">Full Name</span>
+          <form ref={formRef} onSubmit={handleSubmit} className="mt-8 sm:mt-12 flex flex-col space-y-5 sm:space-y-7">
+            <label className="space-y-2 sm:space-y-3">
+              <span className="field-label text-base sm:text-lg">Full Name</span>
               <input
                 type="text"
                 name="name"
                 value={form.name}
                 onChange={handleChange}
                 required
-                className="field-input"
+                className="field-input text-base sm:text-lg"
                 placeholder="ex., John Doe"
               />
             </label>
 
-            <label className="space-y-3">
-              <span className="field-label">Email address</span>
+            <label className="space-y-2 sm:space-y-3">
+              <span className="field-label text-base sm:text-lg">Email address</span>
               <input
                 type="email"
                 name="email"
                 value={form.email}
                 onChange={handleChange}
                 required
-                className="field-input"
+                className="field-input text-base sm:text-lg"
                 placeholder="ex., johndoe@gmail.com"
               />
             </label>
 
-            <label className="space-y-3">
-              <span className="field-label">Your message</span>
+            <label className="space-y-2 sm:space-y-3">
+              <span className="field-label text-base sm:text-lg">Your message</span>
               <textarea
                 name="message"
                 value={form.message}
                 onChange={handleChange}
                 required
                 rows={5}
-                className="field-input"
+                className="field-input text-base sm:text-lg"
                 placeholder="Share your thoughts or inquiries..."
               />
             </label>
 
-            <button className="field-btn" type="submit" disabled={loading}>
+            <button
+              className="field-btn text-base sm:text-lg active:scale-95 transition-transform"
+              type="submit"
+              disabled={loading}>
               {loading ? 'Sending...' : 'Send Message'}
-
               <TbArrowUpRight className="size-4" />
             </button>
           </form>

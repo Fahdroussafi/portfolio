@@ -64,14 +64,14 @@ const WorkExperience = () => {
               {workExperiences.map(({ id, name, pos, duration, icon, title }) => (
                 <div
                   key={id}
-                  className="work-content_container group relative pl-8 border-l-2 border-gray-700 hover:border-white transition-colors duration-300">
-                  <div className="absolute -left-[9px] top-0 bg-black-200 rounded-full p-2 border border-gray-700 group-hover:border-white transition-colors duration-300">
-                    <img className="w-6 h-6 object-contain" src={icon} alt="" loading="lazy" />
+                  className="work-content_container group relative pl-6 sm:pl-8 border-l-2 border-gray-700 hover:border-white transition-colors duration-300">
+                  <div className="absolute -left-[9px] top-0 bg-black-200 rounded-full p-1.5 sm:p-2 border border-gray-700 group-hover:border-white transition-colors duration-300">
+                    <img className="w-5 h-5 sm:w-6 sm:h-6 object-contain" src={icon} alt="" loading="lazy" />
                   </div>
 
                   <div className="sm:p-5 px-2.5 py-5 bg-black-200 rounded-lg transition-all duration-500 hover:bg-black-300/50">
-                    <p className="font-bold text-white-800 text-xl">{name}</p>
-                    <p className="text-sm text-gray-400 mb-5 font-medium">
+                    <p className="font-bold text-white-800 text-lg sm:text-xl">{name}</p>
+                    <p className="text-xs sm:text-sm text-gray-400 mb-5 font-medium">
                       {pos} -- <span className="text-white-500">{duration}</span>
                     </p>
                     <p className="text-sm lg:text-base text-gray-300 group-hover:text-white transition-all ease-in-out duration-500 leading-relaxed">
