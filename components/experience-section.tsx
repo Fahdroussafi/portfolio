@@ -38,7 +38,7 @@ export function ExperienceSection() {
         staggerChildren: 0.1,
       },
     },
-  };
+  } as const;
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
@@ -50,7 +50,7 @@ export function ExperienceSection() {
         stiffness: 100,
       },
     },
-  };
+  } as const;
 
   return (
     <section
@@ -63,7 +63,7 @@ export function ExperienceSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-foreground pt-0 md:pt-12 md:sticky md:top-12 self-start">
+            className="text-foreground pt-0 md:pt-12 md:sticky md:top-12 self-start text-center md:text-left">
             <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 md:mb-8 leading-[1.1]">
               Take a look at my{" "}
               <motion.span
@@ -72,14 +72,14 @@ export function ExperienceSection() {
                 past experiences
               </motion.span>
             </h2>
-            <p className="text-muted-foreground mb-8 md:mb-10 leading-relaxed text-lg md:text-xl max-w-md font-medium">
+            <p className="text-muted-foreground mb-8 md:mb-10 leading-relaxed text-lg md:text-xl max-w-md mx-auto md:mx-0 font-medium">
               I've worked with various startups and established companies,
               helping them build premium digital products.
             </p>
             <a
               href="/resume.pdf"
               download="front-end developer.pdf"
-              className="w-full sm:w-auto">
+              className="w-full sm:w-auto flex justify-center md:justify-start">
               <Button className="bg-foreground text-background hover:bg-foreground/90 rounded-xl py-6 px-10 text-lg font-bold h-auto w-full sm:w-auto shadow-[6px_6px_0px_0px_var(--primary)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all">
                 <FileText className="size-6" />
                 Download resume
