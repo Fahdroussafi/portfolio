@@ -92,15 +92,22 @@ export function HeroSection() {
             </p>
 
             <div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:gap-7 pt-4">
-              <Button className="bg-foreground text-background hover:bg-foreground/90 rounded-lg py-5 px-8 md:py-[22px] md:px-[62px] text-base md:text-lg font-semibold h-auto w-full sm:w-auto sm:min-w-[240px] shadow-[6px_6px_0px_0px_var(--secondary)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
-                <Mail className="size-5" />
-                Get in touch
+              <Button
+                asChild
+                className="bg-foreground text-background hover:bg-foreground/90 rounded-lg py-5 px-8 md:py-[22px] md:px-[62px] text-base md:text-lg font-semibold h-auto w-full sm:w-auto sm:min-w-[240px] shadow-[6px_6px_0px_0px_var(--secondary)] hover:shadow-none hover:translate-x-[6px] hover:translate-y-[6px] transition-all">
+                <a href="mailto:roussafifahd@gmail.com">
+                  <Mail className="size-5" />
+                  Get in touch
+                </a>
               </Button>
               <Button
+                asChild
                 variant="outline"
-                className="bg-background border-[3px] border-border hover:bg-accent/10 rounded-lg py-5 px-8 md:py-[22px] md:px-[62px] text-base md:text-lg font-semibold h-auto w-full sm:w-auto sm:min-w-[240px] shadow-[6px_6px_0px_0px_var(--accent)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
-                <FolderOpen className="size-5" />
-                View portfolio
+                className="bg-background border-[3px] border-border hover:bg-accent rounded-lg py-5 px-8 md:py-[22px] md:px-[62px] text-base md:text-lg font-semibold h-auto w-full sm:w-auto sm:min-w-[240px] shadow-[6px_6px_0px_0px_var(--accent)] hover:shadow-none hover:translate-x-[6px] hover:translate-y-[6px] transition-all">
+                <a href="#projects">
+                  <FolderOpen className="size-5" />
+                  View portfolio
+                </a>
               </Button>
             </div>
           </motion.div>
