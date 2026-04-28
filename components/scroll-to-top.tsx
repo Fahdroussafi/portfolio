@@ -39,9 +39,9 @@ export function ScrollToTop() {
           <Button
             onClick={scrollToTop}
             size="icon"
-            className="w-14 h-14 bg-[#ff6b7a] dark:bg-[#2f81f7] border-4 border-black dark:border-white rounded-xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all"
+            className="w-14 h-14 bg-primary text-primary-foreground border-4 border-border rounded-xl shadow-[4px_4px_0px_0px_var(--border)] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all"
             aria-label="Scroll to top">
-            <ArrowUp className="w-8 h-8 text-white" strokeWidth={3} />
+            <ArrowUp className="w-8 h-8" strokeWidth={3} />
           </Button>
         </motion.div>
       )}
