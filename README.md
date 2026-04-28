@@ -1,54 +1,49 @@
-# React + TypeScript + Vite
+# Cooked this Paperfolio template with V0 | Here’s the template you can use for free
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://v0.link/nikhil-shukla)
+[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.link/paperfolio)
 
-Currently, two official plugins are available:
+![Paperfolio Template Preview](https://global.discourse-cdn.com/vercel/original/2X/e/e8a5d554ecf92e4adb4a718138c60ad7e0c7510e.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+I’ve been experimenting with **V0 - by Vercel**, and I rebuilt the popular **Paperfolio** layout originally created by **Brix Templates**.
+This is a community-made clone — all ownership of the original design stays with @brixtemplatesbrixtemplates.
+My goal was simply to recreate it in V0 so anyone can use or remix it.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Live Demo & Template Access
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+**→  Template (Clone / Remix):** https://v0.link/paperfolio
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+**→  Live Preview:** https://v0-paperfolio.vercel.app
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Video Walkthrough
+
+**→ Watch the walkthrough on X:**
+[https://x.com/i/status/1994130537464910310](https://x.com/i/status/1994130537464910310)
+
+---
+
+## What’s Inside the Template
+
+* Clean portfolio with hero section and highlight-style text blocks
+* Minimal, bold layout focused on showcasing your work
+* Reusable components built directly in V0
+* Easy to customize for personal portfolios or client sites
+
+---
+
+## How to Use It
+
+1. Open the template → https://v0.link/paperfolio
+2. Click on “Open in V0”
+3. Make your styling tweaks
+4. Deploy on Vercel
+
+That’s it — you have a clean, modern portfolio site ready to ship.
+
+---
+
+If you end up customizing this, I’d like to see what you build.
